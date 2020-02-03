@@ -1,68 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Redux 혹은 Mobx 를 이용한 가위 바위 보 구현
 
-## Available Scripts
+### 구현 조건
 
-In the project directory, you can run:
+Redux 혹은 Mobx, React 를 사용
+나머지 스택은 상관없음
 
-### `yarn start`
+### 구현 목적
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Redux, Mobx, React와 같은 framework, library를 사용하는 이유, 설계 의의를 이해하고 그에 맞게 코드를 작성할 수 있는가
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- application state를 Redux 혹은 Mobx에 맞게 설계할 수 있는가
 
-### `yarn test`
+### 구현상세
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [x] n 세트를 먼저 이기는 플레이어가 한 게임 승리.
+- [x] 1플레이어는 유저, 2플레이어는 컴퓨터
+- [x] 컴퓨터는 랜덤으로 가위, 바위, 보를 낸다.
+- [x] 시간이 전부 흐르기 전에 패를 고르면 결과가 바로 공개됨
+- [x] 한 세트는 n판으로 구성
+- [x] 결과가 보여지는 패널이 존재 (1set, n승, n패, 같은)
+- [x] n승을 하면 한 세트 승리. n세트 승리시 , 최종 승자가 결정되고 게임종료
+- [x] 재시작, 그만하기 존재
 
-### `yarn build`
+### 추가로 하면 좋은 것들
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [ ] 상대가 이미 고른 상태란 것을 표현해주기
+- [ ] 각 플레이어가 제한된 시간 내에 가위, 바위, 보 를 선택하고 시간 제한이 끝나면 결과가 나옴.
+- [ ] 가위,바위,보를 선택하지 않고 시간이 흐르면 유저의 패배
