@@ -11,6 +11,24 @@ Redux 혹은 Mobx, React 를 사용
 
 - application state를 Redux 혹은 Mobx에 맞게 설계할 수 있는가
 
+## Installation guide
+
+    # clone repo
+
+        git clone https://github.com/callmedevmomo/react-redux-rps
+
+    # change directory to your app
+
+        cd react-redux-rps
+
+    # install the dependencies with yarn
+
+        yarn install
+
+    # start the server
+
+        yarn start
+
 ### 구현상세
 
 - [x] n 세트를 먼저 이기는 플레이어가 한 게임 승리.
