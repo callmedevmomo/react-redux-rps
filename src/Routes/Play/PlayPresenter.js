@@ -86,7 +86,11 @@ class PlayPresenter extends Component {
               <Btn onClick={this.props.startGame}>Start</Btn>
               <AnotherBox>
                 <RestartBtn onClick={this.props.resetLocal}>Reset</RestartBtn>
-                <RestartBtn onClick={this.props.stopRps}>Stop</RestartBtn>
+                {this.props.scores.results.length !== 0 ? (
+                  <RestartBtn onClick={this.props.stopRps}>Stop</RestartBtn>
+                ) : (
+                  <RestartBtn>Stop</RestartBtn>
+                )}
               </AnotherBox>
               <StopBox>
                 <StopState current={this.props.stopResult === "Win"}>

@@ -11,6 +11,7 @@ const initialize = {
   },
   userChoice: "",
   computerChocie: "",
+  stopResult: "",
   rsp: rsp
 };
 
@@ -43,21 +44,44 @@ const setResults = (score, state) => {
   localStorage.setItem(score.key, JSON.stringify(newScores));
   return Object.assign({}, state, { scores: newScores });
 };
-
+const stopResult = (state, action) => {
+  const {
+    stopResult: { player, computer }
+  } = action;
+  let setValue;
+  if (player > computer) {
+    setValue = "Win";
+  } else if (player < computer) {
+    setValue = "Lose";
+  } else {
+    setValue = "Draw";
+  }
+  return Object.assign({}, state, { stopResult: setValue });
+};
 const game = (state = initialize, action) => {
   switch (action.type) {
-    case "SET_ITEMS":
-      return Object.assign({}, state, { items: action.items });
     case "START_GAME":
-      return Object.assign({}, state, { gameStarted: action.isStarted });
+      return Object.assign(
+        {},
+        state,
+        { gameStarted: action.isStarted },
+        { stopResult: "" }
+      );
     case "USER_CHOICE":
       return Object.assign({}, state, { userChoice: action.choice });
     case "COMPUTER_CHOICE":
       return Object.assign({}, state, { computerChocie: action.choice });
     case "SET_SCORES":
-      return Object.assign({}, state, {
-        scores: action.scores || initialize.scores
-      });
+      return Object.assign(
+        {},
+        state,
+        {
+          scores: action.scores || initialize.scores
+        },
+        { stopResult: "" }
+      );
+    case "STOP_SCORES":
+      return stopResult(state, action);
     case "EVAL_RESULT":
       return evaluateResult(state, action);
     default:

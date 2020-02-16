@@ -1,10 +1,4 @@
 const actions = {
-  setItems: items => {
-    return {
-      type: "SET_ITEMS",
-      items
-    };
-  },
   gameStart: isStarted => {
     return {
       type: "START_GAME",
@@ -33,6 +27,12 @@ const actions = {
     return {
       type: "SET_SCORES",
       scores
+    };
+  },
+  stopScores: stopResult => {
+    return {
+      type: "STOP_SCORES",
+      stopResult
     };
   }
 };

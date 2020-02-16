@@ -30,17 +30,9 @@ const resetLocal = dispatch => {
 };
 
 const stopRps = dispatch => {
-  const result = dispatch(
-    actions.setScores(JSON.parse(localStorage.getItem("Now Playing!")))
-  ).scores;
-  let callarr = ["Draw", "Win", "Lose"];
-  if (result !== null && result.player === result.computer) {
-    stopResult = callarr[0];
-  } else if (result !== null && result.player > result.computer) {
-    stopResult = callarr[1];
-  } else if (result !== null && result.player < result.computer) {
-    stopResult = callarr[2];
-  }
+  dispatch(
+    actions.stopScores(JSON.parse(localStorage.getItem("Now Playing!")))
+  );
 };
 const NowPlay = (dispatch, human) => {
   clearInterval(shuffleInterval);
@@ -53,8 +45,9 @@ const NowPlay = (dispatch, human) => {
 
 const mapStateToProps = state => {
   items = state.items;
+  stopResult = state.stopResult;
   return {
-    items: state.items,
+    items,
     gameStarted: state.gameStarted,
     scores: state.scores,
     userChoice: state.userChoice,

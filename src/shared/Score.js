@@ -109,7 +109,9 @@ const Scores = props => {
 };
 
 const renderScores = results => {
+  // console.log(results);
   return results.map((item, i) => {
+    // console.log(item);
     return (
       <RoundContainer key={i}>
         <Round>
