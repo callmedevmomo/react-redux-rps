@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const ScoreCon = styled.div`
   height: 500px;
@@ -57,37 +58,37 @@ const RoundState = styled.div`
   font-size: 22px;
 `;
 
-const Scores = props => {
+const Scores = ({ player, tie, computer, results }) => {
   return (
     <ScoreCon>
       <ResultBox>
         <StateBox>
           WIN
-          <StateText>{props.scores.player}</StateText>
+          <StateText>{player}</StateText>
         </StateBox>
         <StateBox>
           DRAW
-          <StateText>{props.scores.tie}</StateText>
+          <StateText>{tie}</StateText>
         </StateBox>
         <StateBox>
           LOSE
-          <StateText>{props.scores.computer}</StateText>
+          <StateText>{computer}</StateText>
         </StateBox>
       </ResultBox>
       <RoundBox>
-        {props.scores.player >= 2 ? (
+        {player >= 2 ? (
           <h1>OMG You are Genius!!</h1>
         ) : (
           <>
-            {props.scores.computer >= 2 ? (
+            {computer >= 2 ? (
               <h1>You are Lose! T_T</h1>
             ) : (
               <>
-                {props.scores.results.length + 1 >= 4 ? (
+                {results.length + 1 >= 4 ? (
                   <>
-                    {props.scores.player === props.scores.computer ? (
+                    {player === computer ? (
                       <h1>Draw!</h1>
-                    ) : props.scores.player > props.scores.computer ? (
+                    ) : player > computer ? (
                       <h1>OMG You are Genius!!</h1>
                     ) : (
                       <h1> You are Lose! T_T</h1>
@@ -95,8 +96,30 @@ const Scores = props => {
                   </>
                 ) : (
                   <>
-                    <p>Now we are Round {props.scores.results.length + 1}</p>
-                    {renderScores(props.scores.results)}
+                    <p>Now we are Round {results.length + 1}</p>
+                    {results.map((item, i) => {
+                      return (
+                        <RoundContainer key={i}>
+                          <Round>
+                            <div
+                              className={
+                                item.result === "player" ? "winner" : ""
+                              }
+                            >
+                              <RoundState>{item.player}</RoundState>
+                            </div>
+                            <RoundDiv>Round {i + 1}</RoundDiv>
+                            <div
+                              className={
+                                item.result === "computer" ? "winner" : ""
+                              }
+                            >
+                              <RoundState> {item.computer}</RoundState>
+                            </div>
+                          </Round>
+                        </RoundContainer>
+                      );
+                    })}
                   </>
                 )}
               </>
@@ -108,24 +131,18 @@ const Scores = props => {
   );
 };
 
-const renderScores = results => {
-  // console.log(results);
-  return results.map((item, i) => {
-    // console.log(item);
-    return (
-      <RoundContainer key={i}>
-        <Round>
-          <div className={item.result === "player" ? "winner" : ""}>
-            <RoundState>{item.player}</RoundState>
-          </div>
-          <RoundDiv>Round {i + 1}</RoundDiv>
-          <div className={item.result === "computer" ? "winner" : ""}>
-            <RoundState> {item.computer}</RoundState>
-          </div>
-        </Round>
-      </RoundContainer>
-    );
-  });
+Scores.propTypes = {
+  player: PropTypes.number,
+  tie: PropTypes.number,
+  computer: PropTypes.number,
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      player: PropTypes.string,
+      computer: PropTypes.string,
+      key: PropTypes.string,
+      result: PropTypes.string
+    })
+  )
 };
 
 export default Scores;

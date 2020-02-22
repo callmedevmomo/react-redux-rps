@@ -45,3 +45,10 @@ Redux 혹은 Mobx, React 를 사용
 - [ ] 상대가 이미 고른 상태란 것을 표현해주기
 - [ ] 각 플레이어가 제한된 시간 내에 가위, 바위, 보 를 선택하고 시간 제한이 끝나면 결과가 나옴.
 - [ ] 가위,바위,보를 선택하지 않고 시간이 흐르면 유저의 패배
+
+### 피드백
+
+- [ ] PlayContainenr 안에 있는 로직 redux 안에 넣기 (redux-saga) && 순수함수 reducer
+- [x] Shared 폴더 구조 다시 잡기
+- [x] PropTypes 정확하게 작성하기
+- [x] onClick event 처리

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Container = styled.div``;
 const ComHeader = styled.div`
@@ -24,15 +25,19 @@ const ComChoice = styled.div`
   font-size: 22px;
 `;
 
-const ComputerPlayer = props => {
+const ComputerPlayer = ({ current }) => {
   return (
     <Container>
       <ComHeader>computer</ComHeader>
       <ComBoard>
-        <ComChoice>{props.current}</ComChoice>
+        <ComChoice>{current}</ComChoice>
       </ComBoard>
     </Container>
   );
+};
+
+ComputerPlayer.propTypes = {
+  current: PropTypes.string
 };
 
 export default ComputerPlayer;

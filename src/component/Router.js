@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
-import Play from "../Routes/Play";
-import Header from "./Header";
+import Play from "../routes/play";
+import Header from "./header/Header";
 
 export default () => (
   <Router>

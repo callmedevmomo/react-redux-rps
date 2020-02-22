@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import ComputerPlayer from "../../shared/Computer";
-import Player from "../../shared/Player";
-import Scores from "../../shared/Score";
+import ComputerPlayer from "../../component/game/Computer";
+import Player from "../../component/game/Player";
+import Scores from "../../component/game/Score";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
   margin-top: 40px;
@@ -65,43 +66,48 @@ const StopState = styled.div`
   font-weight: bolder;
 `;
 
-//presenter Magic here!!
-
 class PlayPresenter extends Component {
   componentWillMount() {
     this.props.setGameScores();
   }
+
   render() {
+    const {
+      scores,
+      stopResult,
+      gameStarted,
+      userChoice,
+      computerChocie,
+      items,
+      resetLocal,
+      startGame,
+      stopRps,
+      NowPlay
+    } = this.props;
     return (
       <>
         <BtnCon>
-          {this.props.scores.results.length >= 3 ||
-          this.props.scores.player >= 2 ||
-          this.props.scores.computer >= 2 ? (
+          {scores.results.length >= 3 ||
+          scores.player >= 2 ||
+          scores.computer >= 2 ? (
             <>
-              <RestartBtn onClick={this.props.resetLocal}>Reset</RestartBtn>
+              <RestartBtn onClick={resetLocal}>Reset</RestartBtn>
             </>
           ) : (
             <>
-              <Btn onClick={this.props.startGame}>Start</Btn>
+              <Btn onClick={startGame}>Start</Btn>
               <AnotherBox>
-                <RestartBtn onClick={this.props.resetLocal}>Reset</RestartBtn>
-                {this.props.scores.results.length !== 0 ? (
-                  <RestartBtn onClick={this.props.stopRps}>Stop</RestartBtn>
+                <RestartBtn onClick={resetLocal}>Reset</RestartBtn>
+                {scores.results.length !== 0 ? (
+                  <RestartBtn onClick={stopRps}>Stop</RestartBtn>
                 ) : (
                   <RestartBtn>Stop</RestartBtn>
                 )}
               </AnotherBox>
               <StopBox>
-                <StopState current={this.props.stopResult === "Win"}>
-                  Win
-                </StopState>
-                <StopState current={this.props.stopResult === "Draw"}>
-                  Draw
-                </StopState>
-                <StopState current={this.props.stopResult === "Lose"}>
-                  Lose
-                </StopState>
+                <StopState current={stopResult === "Win"}>Win</StopState>
+                <StopState current={stopResult === "Draw"}>Draw</StopState>
+                <StopState current={stopResult === "Lose"}>Lose</StopState>
               </StopBox>
             </>
           )}
@@ -109,21 +115,35 @@ class PlayPresenter extends Component {
         <Wrapper>
           <Game>
             <Player
-              gameStarted={this.props.gameStarted}
-              current={this.props.userChoice}
-              items={this.props.items}
-              selectChoice={this.props.NowPlay}
+              gameStarted={gameStarted}
+              current={userChoice}
+              items={items}
+              selectChoice={NowPlay}
             />
-            <Scores scores={this.props.scores} />
-            <ComputerPlayer
-              items={this.props.items}
-              current={this.props.computerChocie}
+            <Scores
+              player={scores.player}
+              tie={scores.tie}
+              computer={scores.computer}
+              results={scores.results}
             />
+            <ComputerPlayer current={computerChocie} />
           </Game>
         </Wrapper>
       </>
     );
   }
 }
+PlayPresenter.propTypes = {
+  scores: PropTypes.object,
+  stopResult: PropTypes.string,
+  gameStarted: PropTypes.bool,
+  userChoice: PropTypes.string,
+  computerChocie: PropTypes.string,
+  items: PropTypes.array,
+  resetLocal: PropTypes.func,
+  startGame: PropTypes.func,
+  stopRps: PropTypes.func,
+  NowPlay: PropTypes.func
+};
 
 export default PlayPresenter;

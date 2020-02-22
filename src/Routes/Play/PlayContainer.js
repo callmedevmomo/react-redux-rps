@@ -1,8 +1,6 @@
 import PlayPresenter from "./PlayPresenter";
 import { connect } from "react-redux";
-import actions from "../../shared/actions";
-
-//redux & react magic here!
+import actions from "../../action";
 
 let shuffleInterval;
 

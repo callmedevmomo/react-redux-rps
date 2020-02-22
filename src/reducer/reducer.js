@@ -1,4 +1,8 @@
-import { rsp } from "./rspModel";
+const rsp = {
+  rock: { beats: ["scissors"] },
+  paper: { beats: ["rock"] },
+  scissors: { beats: ["paper"] }
+};
 
 const initialize = {
   items: Object.keys(rsp),
@@ -12,7 +16,7 @@ const initialize = {
   userChoice: "",
   computerChocie: "",
   stopResult: "",
-  rsp: rsp
+  rsp
 };
 
 const evaluateResult = (state, action) => {
@@ -37,12 +41,14 @@ const evaluateResult = (state, action) => {
   );
 };
 const setResults = (score, state) => {
-  const newScores = Object.assign({}, state.scores, {
+  const newScores = {
+    ...state.scores,
     results: [...state.scores.results, score],
     [score.result]: state.scores[score.result] + 1
-  });
+  };
+
   localStorage.setItem(score.key, JSON.stringify(newScores));
-  return Object.assign({}, state, { scores: newScores });
+  return { ...state, scores: newScores };
 };
 const stopResult = (state, action) => {
   const {
@@ -56,30 +62,26 @@ const stopResult = (state, action) => {
   } else {
     setValue = "Draw";
   }
-  return Object.assign({}, state, { stopResult: setValue });
+
+  return { ...state, stopResult: setValue };
 };
+
 const game = (state = initialize, action) => {
   switch (action.type) {
     case "START_GAME":
-      return Object.assign(
-        {},
-        state,
-        { gameStarted: action.isStarted },
-        { stopResult: "" }
-      );
+      return { ...state, gameStarted: action.isStarted, stopResult: "" };
+
     case "USER_CHOICE":
-      return Object.assign({}, state, { userChoice: action.choice });
+      return { ...state, userChoice: action.choice };
     case "COMPUTER_CHOICE":
-      return Object.assign({}, state, { computerChocie: action.choice });
+      return { ...state, computerChocie: action.choice };
     case "SET_SCORES":
-      return Object.assign(
-        {},
-        state,
-        {
-          scores: action.scores || initialize.scores
-        },
-        { stopResult: "" }
-      );
+      return {
+        ...state,
+        scores: action.scores || initialize.scores,
+        stopResult: ""
+      };
+
     case "STOP_SCORES":
       return stopResult(state, action);
     case "EVAL_RESULT":
