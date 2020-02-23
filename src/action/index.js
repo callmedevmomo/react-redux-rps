@@ -1,3 +1,3 @@
-import actions from "./actions";
+import { actions } from "./actions";
 
 export default actions;

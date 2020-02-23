@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ComputerPlayer from "../../component/game/Computer";
-import Player from "../../component/game/Player";
-import Scores from "../../component/game/Score";
+import ComputerPlayer from "../../components/game/Computer";
+import Player from "../../components/game/Player";
+import Scores from "../../components/game/Score";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
