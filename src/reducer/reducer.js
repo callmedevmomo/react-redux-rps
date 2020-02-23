@@ -69,8 +69,11 @@ const stopResult = (state, action) => {
 const game = (state = initialize, action) => {
   switch (action.type) {
     case "START_GAME":
-      return { ...state, gameStarted: action.isStarted, stopResult: "" };
-
+      return {
+        ...state,
+        gameStarted: action.isStarted,
+        stopResult: ""
+      };
     case "USER_CHOICE":
       return { ...state, userChoice: action.choice };
     case "COMPUTER_CHOICE":
@@ -82,6 +85,7 @@ const game = (state = initialize, action) => {
         stopResult: ""
       };
 
+    // 순수함수만 뱉는 리듀서
     case "STOP_SCORES":
       return stopResult(state, action);
     case "EVAL_RESULT":
