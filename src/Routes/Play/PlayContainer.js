@@ -2,46 +2,9 @@ import PlayPresenter from "./PlayPresenter";
 import { connect } from "react-redux";
 import actions from "../../action";
 
-let shuffleInterval;
-
-let items = [];
-let stopResult;
-
-const shuffle = dispatch => {
-  shuffleInterval = setInterval(() => {
-    dispatch(actions.setComputerChoice(randomComResult()));
-  }, 200);
-};
-
-const randomComResult = () => {
-  return items[Math.floor(Math.random() * items.length)];
-};
-
-const startGame = dispatch => {
-  dispatch(actions.gameStart(true));
-  shuffle(dispatch);
-};
-
-const resetLocal = dispatch => {
-  stopResult = "";
-  dispatch(actions.setScores(localStorage.removeItem("Now Playing!")));
-};
-
-const stopRps = dispatch => {
-  dispatch(
-    actions.stopScores(JSON.parse(localStorage.getItem("Now Playing!")))
-  );
-};
-const NowPlay = (dispatch, human) => {
-  clearInterval(shuffleInterval);
-  const computer = randomComResult();
-  dispatch(actions.gameStart(false));
-  dispatch(actions.setComputerChoice(computer));
-  dispatch(actions.setUserChoice(human));
-  dispatch(actions.evaluateResult("Now Playing!"));
-};
-
 const mapStateToProps = state => {
+  let items = [];
+  let stopResult;
   items = state.items;
   stopResult = state.stopResult;
   return {
@@ -56,10 +19,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startGame: () => startGame(dispatch),
-    resetLocal: () => resetLocal(dispatch),
-    stopRps: () => stopRps(dispatch),
-    NowPlay: item => NowPlay(dispatch, item),
+    startGame: () => dispatch(actions.startAsync()),
+    resetLocal: () => dispatch(actions.resetAsync()),
+    stopRps: () => dispatch(actions.stopAsync()),
+    NowPlay: item => dispatch(actions.nowAsync(item)),
     setGameScores: () =>
       dispatch(
         actions.setScores(JSON.parse(localStorage.getItem("Now Playing!")))

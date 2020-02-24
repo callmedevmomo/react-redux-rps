@@ -5,6 +5,11 @@ const actions = {
       isStarted
     };
   },
+  startAsync: () => {
+    return {
+      type: "START_ASYNC"
+    };
+  },
   setUserChoice: choice => {
     return {
       type: "USER_CHOICE",
@@ -33,6 +38,34 @@ const actions = {
     return {
       type: "STOP_SCORES",
       stopResult
+    };
+  },
+  stopAsync: () => {
+    return {
+      type: "STOP_ASYNC"
+    };
+  },
+  resetAsync: () => {
+    return {
+      type: "RESET_ASYNC"
+    };
+  },
+  nowAsync: item => {
+    return {
+      type: "NOW_ASYNC",
+      item
+    };
+  },
+  handleResult: data => {
+    return {
+      type: "HANDLE_DATA",
+      data
+    };
+  },
+  ResultAsync: data => {
+    return {
+      type: "RESULT_ASYNC",
+      data
     };
   }
 };
