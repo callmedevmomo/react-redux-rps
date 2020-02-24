@@ -55,18 +55,6 @@ const actions = {
       type: "NOW_ASYNC",
       item
     };
-  },
-  handleResult: data => {
-    return {
-      type: "HANDLE_DATA",
-      data
-    };
-  },
-  ResultAsync: data => {
-    return {
-      type: "RESULT_ASYNC",
-      data
-    };
   }
 };
 
