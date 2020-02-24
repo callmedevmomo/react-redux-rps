@@ -5,11 +5,6 @@ const actions = {
       isStarted
     };
   },
-  startAsync: () => {
-    return {
-      type: "START_ASYNC"
-    };
-  },
   setUserChoice: choice => {
     return {
       type: "USER_CHOICE",
@@ -40,19 +35,24 @@ const actions = {
       stopResult
     };
   },
-  stopAsync: () => {
+  startGame: () => {
     return {
-      type: "STOP_ASYNC"
+      type: "GAME_START"
     };
   },
-  resetAsync: () => {
+  stopGame: () => {
     return {
-      type: "RESET_ASYNC"
+      type: "GAME_STOP"
     };
   },
-  nowAsync: item => {
+  resetGame: () => {
     return {
-      type: "NOW_ASYNC",
+      type: "GAME_RESET"
+    };
+  },
+  nowGame: item => {
+    return {
+      type: "NOW_GAME",
       item
     };
   }

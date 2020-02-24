@@ -6,11 +6,12 @@ const rsp = {
   scissors: { beats: ["paper"] }
 };
 
-function* startAsync() {
+function* gameStart() {
   yield put({ type: "START_GAME", isStarted: true });
   yield put({ type: "COMPUTER_CHOICE", choice: "Shuffle" });
 }
-function* stopAsync() {
+
+function* gameStop() {
   let setValue;
   const data = JSON.parse(localStorage.getItem("Now Playing!"));
   const { player, computer } = data;
@@ -25,7 +26,7 @@ function* stopAsync() {
   yield put({ type: "STOP_SCORES", stopResult: setValue });
 }
 
-function* resetAsync() {
+function* gameReset() {
   localStorage.removeItem("Now Playing!");
   yield put({ type: "SET_SCORES" });
 }
@@ -35,7 +36,7 @@ const randomComResult = () => {
   return items[Math.floor(Math.random() * items.length)];
 };
 
-function* nowAsync(action) {
+function* nowGame(action) {
   let result;
   const setKey = "Now Playing!";
   const state = yield select();
@@ -71,10 +72,10 @@ function* nowAsync(action) {
 }
 
 function* handleSaga() {
-  yield takeEvery("START_ASYNC", startAsync);
-  yield takeEvery("STOP_ASYNC", stopAsync);
-  yield takeEvery("RESET_ASYNC", resetAsync);
-  yield takeEvery("NOW_ASYNC", nowAsync);
+  yield takeEvery("GAME_START", gameStart);
+  yield takeEvery("GAME_STOP", gameStop);
+  yield takeEvery("GAME_RESET", gameReset);
+  yield takeEvery("NOW_GAME", nowGame);
 }
 
 export default function* rootSaga() {

@@ -19,10 +19,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startGame: () => dispatch(actions.startAsync()),
-    resetLocal: () => dispatch(actions.resetAsync()),
-    stopRps: () => dispatch(actions.stopAsync()),
-    NowPlay: item => dispatch(actions.nowAsync(item)),
+    startGame: () => dispatch(actions.startGame()),
+    resetLocal: () => dispatch(actions.resetGame()),
+    stopRps: () => dispatch(actions.stopGame()),
+    NowPlay: item => dispatch(actions.nowGame(item)),
     setGameScores: () =>
       dispatch(
         actions.setScores(JSON.parse(localStorage.getItem("Now Playing!")))
