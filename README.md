@@ -48,7 +48,7 @@ Redux 혹은 Mobx, React 를 사용
 
 ### 피드백
 
-- [ ] PlayContainenr 안에 있는 로직 redux 안에 넣기 (redux-saga) && 순수함수 reducer
+- [x] PlayContainenr 안에 있는 로직 redux 안에 넣기 (redux-saga) && 순수함수 reducer
 - [x] Shared 폴더 구조 다시 잡기
 - [x] PropTypes 정확하게 작성하기
-- [x] onClick event 처리
+- [x] onClick arrow fn 수정하기

@@ -22,10 +22,10 @@ const actions = {
       choice
     };
   },
-  evaluateResult: key => {
+  evaluateResult: data => {
     return {
       type: "EVAL_RESULT",
-      key
+      data
     };
   },
   setScores: scores => {

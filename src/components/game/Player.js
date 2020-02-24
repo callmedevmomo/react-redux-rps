@@ -84,8 +84,8 @@ export default class Player extends React.Component {
 }
 
 Player.propTypes = {
-  gameStarted: PropTypes.bool.isRequired,
-  items: PropTypes.array.isRequired,
-  current: PropTypes.string.isRequired,
-  selectChoice: PropTypes.func.isRequired
+  gameStarted: PropTypes.bool,
+  items: PropTypes.array,
+  current: PropTypes.string,
+  selectChoice: PropTypes.func
 };

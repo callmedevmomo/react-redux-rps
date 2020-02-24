@@ -67,10 +67,6 @@ const StopState = styled.div`
 `;
 
 class PlayPresenter extends Component {
-  componentWillMount() {
-    this.props.setGameScores();
-  }
-
   render() {
     const {
       scores,

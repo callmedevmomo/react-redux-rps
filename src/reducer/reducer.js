@@ -40,7 +40,7 @@ const game = (state = initialize, action) => {
     case "STOP_SCORES":
       return { ...state, stopResult: action.stopResult };
     case "EVAL_RESULT":
-      return { ...state, scores: action.key.scores };
+      return { ...state, scores: action.data.scores };
     default:
       return state;
   }
