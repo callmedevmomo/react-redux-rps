@@ -38,6 +38,7 @@ const randomComResult = () => {
 function* nowAsync(action) {
   let result;
   const setKey = "Now Playing!";
+  const state = yield select();
   const computer = randomComResult();
   if (action.item === computer) {
     result = "tie";
@@ -52,7 +53,6 @@ function* nowAsync(action) {
     key: setKey,
     result
   };
-  const state = yield select();
 
   const setResults = (score, state) => {
     const newScores = {
