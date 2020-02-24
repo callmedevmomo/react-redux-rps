@@ -1,6 +1,6 @@
 import PlayPresenter from "./PlayPresenter";
 import { connect } from "react-redux";
-import actions from "../../store/actions";
+import actions from "../../actions";
 
 const mapStateToProps = state => {
   let items = [];
