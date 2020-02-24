@@ -3,7 +3,6 @@ import reset from "styled-reset";
 
 const globalStyles = createGlobalStyle` 
 ${reset};
-/* global Styles raw */
 button {
 border:none;
 cursor:pointer;
