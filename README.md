@@ -52,3 +52,13 @@ Redux 혹은 Mobx, React 를 사용
 - [x] Shared 폴더 구조 다시 잡기
 - [x] PropTypes 정확하게 작성하기
 - [x] onClick arrow fn 수정하기
+
+
+
+
+# 피드백
+
+- 시간제한 
+- 5판 3승 세트 구현 (라운드 진행은 자동) ==> 다음세트는 진행하기 버튼
+- PropTypes 정확하게 작성하기
+
