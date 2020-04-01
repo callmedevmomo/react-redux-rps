@@ -73,7 +73,7 @@ class PlayPresenter extends Component {
       stopResult,
       gameStarted,
       userChoice,
-      computerChocie,
+      computerChoice,
       items,
       resetLocal,
       startGame,
@@ -122,7 +122,7 @@ class PlayPresenter extends Component {
               computer={scores.computer}
               results={scores.results}
             />
-            <ComputerPlayer current={computerChocie} />
+            <ComputerPlayer current={computerChoice} />
           </Game>
         </Wrapper>
       </>
@@ -134,7 +134,7 @@ PlayPresenter.propTypes = {
   stopResult: PropTypes.string,
   gameStarted: PropTypes.bool,
   userChoice: PropTypes.string,
-  computerChocie: PropTypes.string,
+  computerChoice: PropTypes.string,
   items: PropTypes.array,
   resetLocal: PropTypes.func,
   startGame: PropTypes.func,

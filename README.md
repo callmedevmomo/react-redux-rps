@@ -59,6 +59,13 @@ Redux 혹은 Mobx, React 를 사용
 # 피드백
 
 - 시간제한 
+  - 만약에 제 시간에 userChoice 없다면 패배
+  - Score Component에서 처리한다면 
+    - 1. reducer initialState의 scores 처리
+    - 2. score comp에서 데이터 받아서 처리한다면..
+      -  playContainer && playPresenter에서 액션과 함수 정의후 관련 로직 Saga에서 처리하면 될까?
 - 5판 3승 세트 구현 (라운드 진행은 자동) ==> 다음세트는 진행하기 버튼
-- PropTypes 정확하게 작성하기
+  - 버튼을 누른 이후 route?
+  - localStorgae 처리?
+- PropTypes 정확하게 작성하기 (default value or isRequired)
 

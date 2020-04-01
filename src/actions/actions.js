@@ -5,9 +5,10 @@ const actions = {
       isStarted
     };
   },
-  setUserChoice: choice => {
+  setUserChoice: (user, choice) => {
     return {
       type: "USER_CHOICE",
+      user,
       choice
     };
   },
@@ -56,6 +57,7 @@ const actions = {
       item
     };
   }
+  // TimeCount 처리
 };
 
 export default actions;

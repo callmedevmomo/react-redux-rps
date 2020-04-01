@@ -12,9 +12,10 @@ const initialize = {
     player: 0,
     computer: 0,
     tie: 0
+    // 이부분에 timeCount, SetCount, SetResultPlayer,SetResultComputer,SetResultTie ...?
   },
   userChoice: "",
-  computerChocie: "",
+  computerChoice: "",
   stopResult: "",
   rsp
 };
@@ -30,7 +31,7 @@ const game = (state = initialize, action) => {
     case "USER_CHOICE":
       return { ...state, userChoice: action.choice };
     case "COMPUTER_CHOICE":
-      return { ...state, computerChocie: action.choice };
+      return { ...state, computerChoice: action.choice };
     case "SET_SCORES":
       return {
         ...state,

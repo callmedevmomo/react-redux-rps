@@ -5,25 +5,37 @@ const rsp = {
   paper: { beats: ["rock"] },
   scissors: { beats: ["paper"] }
 };
+// let gameTime = 10;
 
 function* gameStart() {
+  // const checkTime = yield call(
+  //   setInterval,
+  //   () => {
+  //     gameTime -= 1;
+  //     console.log(gameTime);
+  //   },
+  //   1000
+  // );
+  // if (gameTime === 5) {
+  //   clearInterval(checkTime);
+  // }
   yield put({ type: "START_GAME", isStarted: true });
-  yield put({ type: "COMPUTER_CHOICE", choice: "Shuffle" });
+  yield put({ type: "COMPUTER_CHOICE", choice: undefined });
 }
 
 function* gameStop() {
-  let setValue;
+  let gameResult;
   const data = JSON.parse(localStorage.getItem("Now Playing!"));
   const { player, computer } = data;
   if (player > computer) {
-    setValue = "Win";
+    gameResult = "Win";
   } else if (player < computer) {
-    setValue = "Lose";
+    gameResult = "Lose";
   } else {
-    setValue = "Draw";
+    gameResult = "Draw";
   }
   yield put({ type: "STOP_SCORES", stopResult: "" });
-  yield put({ type: "STOP_SCORES", stopResult: setValue });
+  yield put({ type: "STOP_SCORES", stopResult: gameResult });
 }
 
 function* gameReset() {
@@ -60,6 +72,7 @@ function* nowGame(action) {
       ...state.scores,
       results: [...state.scores.results, score],
       [score.result]: state.scores[score.result] + 1
+      // 만약에 setCount를 한다면 이 부분에 Count 로직을 처리해야 하는지..
     };
 
     localStorage.setItem(score.key, JSON.stringify(newScores));

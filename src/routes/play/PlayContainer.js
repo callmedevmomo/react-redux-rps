@@ -12,7 +12,7 @@ const mapStateToProps = state => {
     gameStarted: state.gameStarted,
     scores: state.scores,
     userChoice: state.userChoice,
-    computerChocie: state.computerChocie,
+    computerChoice: state.computerChoice,
     stopResult
   };
 };
