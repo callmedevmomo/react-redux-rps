@@ -75,33 +75,15 @@ const Scores = ({ player, tie, computer, results ,setCount,setTie,setPlayer,setC
           <StateText>{computer}</StateText>
         </StateBox>
       </ResultBox>
-      {setCount === 5 || setPlayer === 3 || setComputer ===3 ? <>
+      {setCount === 5 || setPlayer === 3 || setComputer ===3 ? 
+      <>
       <RoundBox>
         {setPlayer>setComputer ? "Player Win" : setPlayer<setComputer ? "Computer Win" : "DRAW GAME"}
       </RoundBox>
-      </> : <>
+      </> : 
+      <>
       <RoundBox>
-        {player >= 2 ? (
-          <h1>OMG You are Genius!!</h1>
-        ) : (
-          <>
-            {computer >= 2 ? (
-              <h1>You are Lose! T_T</h1>
-            ) : (
-              <>
-                {results.length + 1 >= 4 ? (
-                  <>
-                    {player === computer ? (
-                      <h1>Draw!</h1>
-                    ) : player > computer ? (
-                      <h1>OMG You are Genius!!</h1>
-                    ) : (
-                      <h1> You are Lose! T_T</h1>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <p>Now we are Round {results.length + 1} in [SET {setCount +1}]</p>
+      <p>Now we are Round {results.length + 1} in [SET {setCount +1}]</p>
                     {results.map((item, i) => {
                       return (
                         <RoundContainer key={i}>
@@ -125,12 +107,6 @@ const Scores = ({ player, tie, computer, results ,setCount,setTie,setPlayer,setC
                         </RoundContainer>
                       );
                     })}
-                  </>
-                )}
-              </>
-            )}
-          </>
-        )}
       </RoundBox>
       </>}
      
