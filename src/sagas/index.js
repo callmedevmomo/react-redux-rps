@@ -99,16 +99,7 @@ function* nowGame(action) {
     
     localStorage.setItem(score.key, JSON.stringify(newScores));
    
-    console.log(`new Score results:`);
-    console.log(newScores.results);
-    console.log(newScores)
-    console.log(`state :`);
-    console.log(state);
-    console.log(`score : `);
-    console.log(score);
-
     return { ...state, scores: newScores };
-    
 
   };
   isCounted=true;
