@@ -56,8 +56,14 @@ const actions = {
       type: "NOW_GAME",
       item
     };
+  },
+  timeCount: (time)=>{
+    return{
+      type: "TIME_COUNT",
+      time
+    }
   }
-  // TimeCount 처리
+ 
 };
 
 export default actions;

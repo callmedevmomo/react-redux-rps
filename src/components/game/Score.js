@@ -17,7 +17,7 @@ const RoundBox = styled.div`
   width: 400px;
   p {
     font-size: 22px;
-    text-decoration: underline;
+    text-decoration: none;
   }
 `;
 const StateBox = styled.div`
@@ -58,7 +58,7 @@ const RoundState = styled.div`
   font-size: 22px;
 `;
 
-const Scores = ({ player, tie, computer, results }) => {
+const Scores = ({ player, tie, computer, results ,setCount,setTie,setPlayer,setComputer}) => {
   return (
     <ScoreCon>
       <ResultBox>
@@ -75,6 +75,11 @@ const Scores = ({ player, tie, computer, results }) => {
           <StateText>{computer}</StateText>
         </StateBox>
       </ResultBox>
+      {setCount === 5 || setPlayer === 3 || setComputer ===3 ? <>
+      <RoundBox>
+        {setPlayer>setComputer ? "Player Win" : setPlayer<setComputer ? "Computer Win" : "DRAW GAME"}
+      </RoundBox>
+      </> : <>
       <RoundBox>
         {player >= 2 ? (
           <h1>OMG You are Genius!!</h1>
@@ -96,7 +101,7 @@ const Scores = ({ player, tie, computer, results }) => {
                   </>
                 ) : (
                   <>
-                    <p>Now we are Round {results.length + 1}</p>
+                    <p>Now we are Round {results.length + 1} in [SET {setCount +1}]</p>
                     {results.map((item, i) => {
                       return (
                         <RoundContainer key={i}>
@@ -127,6 +132,9 @@ const Scores = ({ player, tie, computer, results }) => {
           </>
         )}
       </RoundBox>
+      </>}
+     
+     
     </ScoreCon>
   );
 };

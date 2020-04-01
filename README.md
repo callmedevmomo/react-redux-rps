@@ -68,4 +68,11 @@ Redux 혹은 Mobx, React 를 사용
   - 버튼을 누른 이후 route?
   - localStorgae 처리?
 - PropTypes 정확하게 작성하기 (default value or isRequired)
+- JSX 에서 삼항연산자 분리하는 방법 (Switch / if else)
 
+
+
+#  삼항연산자 
+  - 함수형으로 묶던지 컴포넌트로 묶던지
+  - 시간제한
+  - 5판3승 (localStorage 가능한 필요 x)

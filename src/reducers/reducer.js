@@ -11,13 +11,17 @@ const initialize = {
     results: [],
     player: 0,
     computer: 0,
-    tie: 0
-    // 이부분에 timeCount, SetCount, SetResultPlayer,SetResultComputer,SetResultTie ...?
+    tie: 0,
+    setCount:0,
+    setPlayer:0,
+    setComputer:0,
+    setTie:0
   },
   userChoice: "",
   computerChoice: "",
   stopResult: "",
-  rsp
+  rsp,
+  timeCount:""
 };
 
 const game = (state = initialize, action) => {
@@ -42,6 +46,8 @@ const game = (state = initialize, action) => {
       return { ...state, stopResult: action.stopResult };
     case "EVAL_RESULT":
       return { ...state, scores: action.data.scores };
+    case "TIME_COUNT":
+        return {...state, timeCount:action.time};
     default:
       return state;
   }

@@ -1,24 +1,29 @@
-import { put, takeEvery, select, all } from "redux-saga/effects";
+import { put, takeEvery, select, all,call } from "redux-saga/effects";
 
 const rsp = {
   rock: { beats: ["scissors"] },
   paper: { beats: ["rock"] },
   scissors: { beats: ["paper"] }
 };
-// let gameTime = 10;
-
+let defaultTime = 15;
+let isCounted = false;
 function* gameStart() {
-  // const checkTime = yield call(
-  //   setInterval,
-  //   () => {
-  //     gameTime -= 1;
-  //     console.log(gameTime);
-  //   },
-  //   1000
-  // );
-  // if (gameTime === 5) {
-  //   clearInterval(checkTime);
-  // }
+  isCounted=false;
+  defaultTime=15;
+ let repeat =  yield call(setInterval, () => {
+    defaultTime-=1;
+    if(defaultTime===0){
+      alert("TIME OUT RESTART GAME")
+      clearInterval(repeat);
+      defaultTime=15;
+    }
+    else if(isCounted===true){
+      clearInterval(repeat);
+      defaultTime=15;
+    }
+  }, 1000);
+   
+  yield put({type:"TIME_COUNT",time:defaultTime})
   yield put({ type: "START_GAME", isStarted: true });
   yield put({ type: "COMPUTER_CHOICE", choice: undefined });
 }
@@ -72,12 +77,41 @@ function* nowGame(action) {
       ...state.scores,
       results: [...state.scores.results, score],
       [score.result]: state.scores[score.result] + 1
-      // 만약에 setCount를 한다면 이 부분에 Count 로직을 처리해야 하는지..
     };
+    if(newScores.results.length===3 || newScores.player===2||newScores.computer===2){
+      
+      if(newScores.player>newScores.computer){
+        newScores.setPlayer+=1;
+      }
+      else if(newScores.player===newScores.computer){
+        newScores.setTie+=1;
+      }
+      else if(newScores.player<newScores.computer){
+        newScores.setComputer+=1;
+      }
 
+      newScores.setCount+=1;
+      newScores.player=0;
+      newScores.computer=0;
+      newScores.tie=0;
+      newScores.results=[];
+    }
+    
     localStorage.setItem(score.key, JSON.stringify(newScores));
+   
+    console.log(`new Score results:`);
+    console.log(newScores.results);
+    console.log(newScores)
+    console.log(`state :`);
+    console.log(state);
+    console.log(`score : `);
+    console.log(score);
+
     return { ...state, scores: newScores };
+    
+
   };
+  isCounted=true;
   yield put({ type: "START_GAME", isStarted: false });
   yield put({ type: "COMPUTER_CHOICE", choice: computer });
   yield put({ type: "USER_CHOICE", choice: action.item });

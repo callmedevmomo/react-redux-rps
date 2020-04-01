@@ -88,10 +88,13 @@ class PlayPresenter extends Component {
           scores.computer >= 2 ? (
             <>
               <RestartBtn onClick={resetLocal}>Reset</RestartBtn>
+              <Btn onClick={startGame}>Next Set</Btn>
+
             </>
           ) : (
             <>
-              <Btn onClick={startGame}>Start</Btn>
+              <Btn onClick={startGame}>{scores.setCount===0 ? "START" : scores.setCount<=4 ? `${scores.setCount+1} SET START`
+              : "FINISHED"} </Btn>
               <AnotherBox>
                 <RestartBtn onClick={resetLocal}>Reset</RestartBtn>
                 {scores.results.length !== 0 ? (
@@ -121,6 +124,10 @@ class PlayPresenter extends Component {
               tie={scores.tie}
               computer={scores.computer}
               results={scores.results}
+              setCount={scores.setCount}
+              setPlayer={scores.setPlayer}
+              setComputer={scores.setComputer}
+              setTie={scores.setTie}
             />
             <ComputerPlayer current={computerChoice} />
           </Game>
