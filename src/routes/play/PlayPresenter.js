@@ -4,7 +4,6 @@ import Player from "../../components/game/Player";
 import Scores from "../../components/game/Score";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-
 const Wrapper = styled.div`
   margin-top: 40px;
 `;
@@ -66,11 +65,13 @@ const StopState = styled.div`
   font-weight: bolder;
 `;
 
+
+
 class PlayPresenter extends Component {
   render() {
     const {
       scores,
-      stopResult,
+      gameStop,
       gameStarted,
       userChoice,
       computerChoice,
@@ -93,6 +94,7 @@ class PlayPresenter extends Component {
             </>
           ) : (
             <>
+
               <Btn onClick={startGame}>{scores.setCount===0 ? "START" : scores.setCount<=4 ? `${scores.setCount+1} SET START`
               : "FINISHED"} </Btn>
               <AnotherBox>
@@ -104,9 +106,9 @@ class PlayPresenter extends Component {
                 )}
               </AnotherBox>
               <StopBox>
-                <StopState current={stopResult === "Win"}>Win</StopState>
-                <StopState current={stopResult === "Draw"}>Draw</StopState>
-                <StopState current={stopResult === "Lose"}>Lose</StopState>
+                <StopState current={gameStop === "Win"}>Win</StopState>
+                <StopState current={gameStop === "Draw"}>Draw</StopState>
+                <StopState current={gameStop === "Lose"}>Lose</StopState>
               </StopBox>
             </>
           )}
@@ -138,7 +140,7 @@ class PlayPresenter extends Component {
 }
 PlayPresenter.propTypes = {
   scores: PropTypes.object,
-  stopResult: PropTypes.string,
+  gameStop: PropTypes.string,
   gameStarted: PropTypes.bool,
   userChoice: PropTypes.string,
   computerChoice: PropTypes.string,

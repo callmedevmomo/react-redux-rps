@@ -15,13 +15,12 @@ const initialize = {
     setCount:0,
     setPlayer:0,
     setComputer:0,
-    setTie:0
+    setTie:0,
   },
   userChoice: "",
   computerChoice: "",
-  stopResult: "",
-  rsp,
-  timeCount:""
+  gameStop: "",
+  rsp
 };
 
 const game = (state = initialize, action) => {
@@ -30,7 +29,7 @@ const game = (state = initialize, action) => {
       return {
         ...state,
         gameStarted: action.isStarted,
-        stopResult: ""
+        gameStop: ""
       };
     case "USER_CHOICE":
       return { ...state, userChoice: action.choice };
@@ -40,14 +39,12 @@ const game = (state = initialize, action) => {
       return {
         ...state,
         scores: action.scores || initialize.scores,
-        stopResult: ""
+        gameStop: ""
       };
     case "STOP_SCORES":
-      return { ...state, stopResult: action.stopResult };
+      return { ...state, gameStop: action.gameStop };
     case "EVAL_RESULT":
       return { ...state, scores: action.data.scores };
-    case "TIME_COUNT":
-        return {...state, timeCount:action.time};
     default:
       return state;
   }

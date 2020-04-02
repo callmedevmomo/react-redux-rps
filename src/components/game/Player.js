@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import Timer from "./Timer"
 
 const PlayCon = styled.div``;
 const PlayHeader = styled.div`
@@ -46,6 +47,19 @@ const ChoiceBtn = styled.button`
   }
 `;
 
+const TimerContainer = styled.div`
+position:absolute;
+  top:100px;
+  left:190px;
+  width:1300px;
+  color:black;
+  font-size:40px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+`;
+
 export default class Player extends React.Component {
   constructor(props) {
     super(props);
@@ -65,6 +79,10 @@ export default class Player extends React.Component {
         <PlayHeader>User</PlayHeader>
         <PlayBoard>
           {gameStarted ? (
+            <>
+            <TimerContainer>
+            <Timer></Timer>
+            </TimerContainer>
             <BtnBox>
               {items.map((item, i) => (
                 <ChoiceBtn key={i} value={item} onClick={this.handleSelect}>
@@ -72,6 +90,7 @@ export default class Player extends React.Component {
                 </ChoiceBtn>
               ))}
             </BtnBox>
+            </>
           ) : (
             <PlayChocie>
               <ChocieSpan>{current}</ChocieSpan>

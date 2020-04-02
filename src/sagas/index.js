@@ -1,29 +1,13 @@
-import { put, takeEvery, select, all,call } from "redux-saga/effects";
+import { put, takeEvery, select, all } from "redux-saga/effects";
 
 const rsp = {
   rock: { beats: ["scissors"] },
   paper: { beats: ["rock"] },
   scissors: { beats: ["paper"] }
 };
-let defaultTime = 15;
-let isCounted = false;
+
+
 function* gameStart() {
-  isCounted=false;
-  defaultTime=15;
- let repeat =  yield call(setInterval, () => {
-    defaultTime-=1;
-    if(defaultTime===0){
-      alert("TIME OUT RESTART GAME")
-      clearInterval(repeat);
-      defaultTime=15;
-    }
-    else if(isCounted===true){
-      clearInterval(repeat);
-      defaultTime=15;
-    }
-  }, 1000);
-   
-  yield put({type:"TIME_COUNT",time:defaultTime})
   yield put({ type: "START_GAME", isStarted: true });
   yield put({ type: "COMPUTER_CHOICE", choice: undefined });
 }
@@ -39,8 +23,8 @@ function* gameStop() {
   } else {
     gameResult = "Draw";
   }
-  yield put({ type: "STOP_SCORES", stopResult: "" });
-  yield put({ type: "STOP_SCORES", stopResult: gameResult });
+  yield put({ type: "STOP_SCORES", gameStop: "" });
+  yield put({ type: "STOP_SCORES", gameStop: gameResult });
 }
 
 function* gameReset() {
@@ -69,16 +53,21 @@ function* nowGame(action) {
     player: action.item,
     computer,
     key: setKey,
-    result
-  };
+    result,
+    userName:"Henry"
+    };
 
   const setResults = (score, state) => {
     const newScores = {
       ...state.scores,
       results: [...state.scores.results, score],
-      [score.result]: state.scores[score.result] + 1
+      [score.result]: state.scores[score.result] + 1,
+      userName:score.userName
     };
-    if(newScores.results.length===3 || newScores.player===2||newScores.computer===2){
+    let newarr=[newScores.player,newScores.computer].sort((a,b)=>b-a);
+    
+  
+    if(newScores.results.length===3 || newarr[0]>=2){
       
       if(newScores.player>newScores.computer){
         newScores.setPlayer+=1;
@@ -102,7 +91,6 @@ function* nowGame(action) {
     return { ...state, scores: newScores };
 
   };
-  isCounted=true;
   yield put({ type: "START_GAME", isStarted: false });
   yield put({ type: "COMPUTER_CHOICE", choice: computer });
   yield put({ type: "USER_CHOICE", choice: action.item });

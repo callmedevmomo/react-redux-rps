@@ -58,7 +58,19 @@ const RoundState = styled.div`
   font-size: 22px;
 `;
 
-const Scores = ({ player, tie, computer, results ,setCount,setTie,setPlayer,setComputer}) => {
+const Scores = ({ player, tie, computer, results ,setCount,setPlayer,setComputer}) => {
+  let newarr = [setPlayer,setComputer].sort((a,b)=>b-a);
+  function getResult(a,b) {
+    if(a>b){
+      return "Player Win"
+    }
+    else if (a<b){
+      return "Computer Win"
+    }
+    else{
+      return "DRAW GAME"
+    }
+  }
   return (
     <ScoreCon>
       <ResultBox>
@@ -75,13 +87,10 @@ const Scores = ({ player, tie, computer, results ,setCount,setTie,setPlayer,setC
           <StateText>{computer}</StateText>
         </StateBox>
       </ResultBox>
-      {setCount === 5 || setPlayer === 3 || setComputer ===3 ? 
-      <>
-      <RoundBox>
-        {setPlayer>setComputer ? "Player Win" : setPlayer<setComputer ? "Computer Win" : "DRAW GAME"}
-      </RoundBox>
-      </> : 
-      <>
+      {setCount ===5 || newarr[0]>=3 ?
+       <RoundBox>
+         {getResult(setPlayer,setComputer)}
+      </RoundBox> :
       <RoundBox>
       <p>Now we are Round {results.length + 1} in [SET {setCount +1}]</p>
                     {results.map((item, i) => {
@@ -107,10 +116,7 @@ const Scores = ({ player, tie, computer, results ,setCount,setTie,setPlayer,setC
                         </RoundContainer>
                       );
                     })}
-      </RoundBox>
-      </>}
-     
-     
+      </RoundBox>}
     </ScoreCon>
   );
 };

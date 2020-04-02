@@ -18,10 +18,8 @@ const Text = styled.div`
 
 export default () => {
   return (
-    <>
       <Header>
         <Text>Best 2 out of 3 || Rock Paper Scissors</Text>
       </Header>
-    </>
   );
 };

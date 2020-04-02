@@ -4,17 +4,16 @@ import actions from "../../actions";
 
 const mapStateToProps = state => {
   let items = [];
-  let stopResult;
+  let gameStop;
   items = state.items;
-  stopResult = state.stopResult;
+  gameStop = state.gameStop;
   return {
     items,
     gameStarted: state.gameStarted,
     scores: state.scores,
     userChoice: state.userChoice,
     computerChoice: state.computerChoice,
-    stopResult,
-    timeCount:state.timeCount
+    gameStop
   };
 };
 

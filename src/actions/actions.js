@@ -56,14 +56,7 @@ const actions = {
       type: "NOW_GAME",
       item
     };
-  },
-  timeCount: (time)=>{
-    return{
-      type: "TIME_COUNT",
-      time
-    }
   }
- 
 };
 
 export default actions;
