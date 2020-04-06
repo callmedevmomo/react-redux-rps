@@ -4,6 +4,9 @@ import Player from "../../components/game/Player";
 import Scores from "../../components/game/Score";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+
+
+
 const Wrapper = styled.div`
   margin-top: 40px;
 `;

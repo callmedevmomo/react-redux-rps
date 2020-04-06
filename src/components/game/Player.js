@@ -85,7 +85,7 @@ export default class Player extends React.Component {
             </TimerContainer>
             <BtnBox>
               {items.map((item, i) => (
-                <ChoiceBtn key={i} value={item} onClick={this.handleSelect}>
+                 <ChoiceBtn key={i} value={item} onClick={this.handleSelect}>
                   {item}
                 </ChoiceBtn>
               ))}
